@@ -1,21 +1,45 @@
 import React from 'react';
-import ToDoList from './components/TodoList';
+import TodoList from './components/TodoList';
+import TodoForm from './components/TodoForm';
 
 class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      tasks: 'dhsjfhjdsfhjk'
+      todoList: [
+        {
+          task: 'Organize Garage',
+          id: 1528817077286,
+          completed: false
+        },
+        {
+          task: 'Bake Cookies',
+          id: 1528817084358,
+          completed: false
+        }
+      ]
     }; 
   }
 
-  handleChangeFunction = (event) => {
-    this.setState({tasks: event.target.value});
-  };
+  // handleChangeFunction = (event) => {
+  //   this.setState({tasks: event.target.value});
+  // }
 
-  handleTwo = event => {
-    this.setState({tasks: ''});
+  handleSubmit = () => {
+    // console.log(data)
+
+    const newItem = {
+      task: 'Vasya Pupkin',
+      id: 1528817084359,
+      completed: false
+    };
+
+    this.setState( { todoList: [...this.state.todoList, newItem] } );
   }
+
+  // handleTwo = event => {
+  //   this.setState({todoList: []});
+  // }
 
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -24,10 +48,10 @@ class App extends React.Component {
     return (
       <div>
         <h1>Todo List: MVP</h1>
-        <input onChange ={this.handleChangeFunction} />
-        <p>{this.state.tasks}</p>
-        <button>Add To Do</button> 
-        <button onClick = {this.handleTwo} >Clear Completed</button>
+        <TodoList todoList={this.state.todoList} />
+        <TodoForm handleSubmit={this.handleSubmit} />
+
+        {/* <p>{this.state.tasks}</p> */}
       </div>
     );
   }
