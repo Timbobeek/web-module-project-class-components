@@ -2,16 +2,17 @@
 // feel free to change this component.js into TodoList.js
 import React from 'react';
 
-// const TodoList = (props) => <p>{props.propsTodoList}</p>;
-
-class Todo extends React.Component {
-  render() {
-    console.log(this.props)
-
-    return <div>
-        <p>{this.props.item.task}</p>
-      </div>
+const Todo = (props) => {
+  const handleClick = () => {
+    props.handleToggleTask(props.task);
   }
+
+  return(
+    <div onClick={handleClick} className={`task${props.task.completed ? ' completed' : ''}`}>
+      <p>{props.task.task}</p>
+    </div>
+  )
 }
+
 
 export default Todo;
