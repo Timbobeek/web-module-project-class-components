@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
+import './style.css';
 
 const theList = [
   {
@@ -58,6 +59,8 @@ class App extends React.Component {
           return({
             ...task,
             completed: !task.completed
+            //put the strikethrough on text here?
+
           })
         } else {
           return task;
@@ -67,7 +70,6 @@ class App extends React.Component {
   }
 
 
-
   render() {
     return (
       <div>
@@ -75,7 +77,6 @@ class App extends React.Component {
         <TodoForm handleAddTask = {this.handleAddTask}/>
         <TodoList handleToggleTask={this.handleToggleTask} theList={this.state.theList}/>
         <button onClick = {this.handleClearCompleted} className='clear-button'>Clear Completed Items</button>
-
       </div>
     );
   }
